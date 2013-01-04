@@ -1,0 +1,21 @@
+dep_bool_menu "IRC Server (EXPERIMENTAL)" IRCD_SUPPORT $CONFIG_EXPERIMENTAL
+	dep_bool "Start server on boot" IRCD_INIT_AUTOSTART_SUPPORT $IRCD_SUPPORT $CONFIG_EXPERIMENTAL
+	int "IRC port (default 6667)" IRCD_PORT 6667
+
+	comment "Performance settings"
+	int "Maximum name length" IRCD_MAX_NAME_LEN 20
+	int "Maximum message size" IRCD_MAX_MESSAGE_SIZE 128
+	int "Number of message buffers" IRCD_MESSAGE_BUF_SIZE 8
+	
+	comment "Channel settings"
+	int "Maximum channel name length" IRCD_MAX_CHAN_NAME 20
+	int "Maximum channel topic length" IRCD_MAX_CHAN_TOPIC 40
+	int "Maximum simultaneous channels" IRCD_MAX_CHANS 4
+
+	comment "Security"
+	int "Ping timeout interval (in seconds)" IRCD_PTO_RESET 30
+	int "Ping timeout time to answer (in seconds)" IRCD_PTO_TRIGGER 5
+
+	comment  "Debugging Flags"
+	dep_bool 'Debug ircd' DEBUG_IRCD $DEBUG $IRCD_SUPPORT
+endmenu
